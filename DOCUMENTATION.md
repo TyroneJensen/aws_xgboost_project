@@ -1,7 +1,7 @@
-# AWS XGBoost Project - Detailed Documentation
+# AWS Data Pipeline - Detailed Documentation
 
 ## Introduction
-This project demonstrates the use of AWS SageMaker to train and deploy an XGBoost model. The model is trained using SageMaker's built-in datasets and deployed as an endpoint for inference.
+This project demonstrates the use of AWS services to create a data pipeline for processing and analyzing data. It integrates AWS Lambda, S3, Glue, Athena, and SageMaker to provide a comprehensive solution.
 
 ## Prerequisites
 - AWS Account
@@ -14,6 +14,7 @@ This project demonstrates the use of AWS SageMaker to train and deploy an XGBoos
 - `train.py`: Script to train the XGBoost model using SageMaker.
 - `deploy.py`: Script to deploy the trained model as an endpoint.
 - `predict.py`: Script to make predictions using the deployed model.
+- `lambda_function.py`: AWS Lambda function to fetch and process data.
 - `README.md`: Overview and setup instructions.
 - `DOCUMENTATION.md`: Detailed project documentation.
 
@@ -27,6 +28,12 @@ This project demonstrates the use of AWS SageMaker to train and deploy an XGBoos
    pip install boto3 sagemaker
    ```
 
+## Data Processing
+- Run `lambda_function.py` to fetch data from an endpoint, process it, and store it in S3. AWS Glue is then used to catalog the data for Athena.
+
+## Data Analysis
+- Use AWS Athena to query the processed data stored in S3. Visualize the results using Amazon QuickSight.
+
 ## Training the Model
 - Run `train.py` to initiate the training process on SageMaker. The script sets up the XGBoost estimator and specifies hyperparameters and data channels.
 
@@ -35,6 +42,9 @@ This project demonstrates the use of AWS SageMaker to train and deploy an XGBoos
 
 ## Making Predictions
 - Run `predict.py` to make predictions using the deployed model. The script sends sample data to the endpoint and retrieves the prediction.
+
+## Data Flow Diagram
+![Data Flow](graphviz.png)
 
 ## Troubleshooting
 - **AWS Permissions**: Ensure your SageMaker role has the necessary permissions for training and deployment.

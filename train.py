@@ -27,9 +27,9 @@ xgboost_estimator.set_hyperparameters(
     num_round=100
 )
 
-# Define data channels
-train_input = TrainingInput("s3://sagemaker-sample-data-us-east-1/binary_classification/train", content_type="csv")
-validation_input = TrainingInput("s3://sagemaker-sample-data-us-east-1/binary_classification/validation", content_type="csv")
+# Updated S3 paths for processed data
+train_input = TrainingInput("s3://your-bucket-name/data/processed_train.csv", content_type="csv")
+validation_input = TrainingInput("s3://your-bucket-name/data/processed_validation.csv", content_type="csv")
 
 # Start training
 xgboost_estimator.fit({"train": train_input, "validation": validation_input})
